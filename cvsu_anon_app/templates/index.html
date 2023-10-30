@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" />
+{% endblock styles %}
+
+
+{% block content %}
+<div class="peak-bg"></div>
+<main class="content">
+    <section class="content__left-section">
+        <h1 class="content__heading">CvSU <mark>Anon.</mark></h1>
+        <p class="content__desc">A web application, similar to NGL, includes a feed where users can see which person
+            (his/her username) has received the most messages. Users have a point system called <strong>'ray
+                points(RP)'</strong> where
+            they
+            earn points for each message they receive and send. To prevent users from sending messages to themselves by
+            creating multiple accounts, each user is limited to having only one account per IP address.</p>
+        <button class="btn"> <a href="{% url 'register_user' %}">Join CvSU Anon -></a></button>
+    </section>
+    <section class="content__right-section">
+        {% load static %}
+        <img class="content__right-section__img" src="{% static 'images/anon.png' %}"
+            alt="An illustration of a woman and a dog watching something on the laptop." />
+    </section>
+</main>
+{% endblock content %}

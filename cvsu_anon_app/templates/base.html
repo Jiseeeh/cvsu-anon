@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} CvSU-Anon {% endblock %} </title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}">
+    {% block styles %}
+    {% endblock styles %}
+    {% block meta %}
+    {% endblock meta %}
+</head>
+
+<body>
+    <nav class="nav">
+        <section class="nav__logo">
+            <h1>LOGO</h1>
+            {% if show_nav %}
+            <button class="hamburger-btn">
+                <label for="dropdown">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="hamburger-icon" width="24" height="24"
+                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M4 6l16 0"></path>
+                        <path d="M4 12l16 0"></path>
+                        <path d="M4 18l16 0"></path>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="close-icon" width="24" height="24"
+                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M18 6l-12 12"></path>
+                        <path d="M6 6l12 12"></path>
+                    </svg>
+                </label>
+                <input type="checkbox" id="dropdown" />
+            </button>
+            {% endif %}
+        </section>
+        {% if show_nav %}
+        <ul class="nav-links">
+            <li class="nav__link"><a href="">Dashboard</a></li>
+            {% if user.is_authenticated %}
+            <li class="nav__link"><a href="">Logout</a></li>
+            {% else %}
+            <li class="nav__link"><a href="">Login</a></li>
+            {% endif %}
+        </ul>
+        {% endif %}
+    </nav>
+    {% block content %}
+
+    {% endblock %}
+</body>
+
+</html>
