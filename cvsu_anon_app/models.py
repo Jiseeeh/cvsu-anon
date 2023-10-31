@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 class AnonUser(AbstractUser):
     id = models.AutoField(primary_key=True)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
-    client_ip = models.GenericIPAddressField(unique=True,default='192.168.0.1')
+    client_ip = models.GenericIPAddressField(unique=True)
     ray_points = models.IntegerField(default=0)
     
 class Message(models.Model):
