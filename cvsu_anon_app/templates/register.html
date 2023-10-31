@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %} Register {% endblock title %}
+
+{% block styles %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock styles %}
+
+{% block content %}
+
+<main class="sections-wrapper">
+    <section class="left-section">
+        <h1>Register</h1>
+        {% if form.errors %}
+        <div class="form-error">
+            You have errors in your form.
+            {% for field in form %}
+                {% if field.errors %}
+                    {{ field.errors }}
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+        <form action="" method="post" class="form">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="field-group-col">
+                {{ field.label_tag }} {{ field }}
+                {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <span>Already have an account? <span><a href="{% url 'login' %}" class="link">Login</a></span></span>
+            <input type="submit" value="Register" class="btn">
+        </form>
+    </section>
+    <section class="right-section">
+        <h1>Rules to Follow</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Purus ut faucibus pulvinar elementum integer enim. Et tortor at risus viverra adipiscing at
+            in. Mauris cursus mattis molestie a iaculis at erat pellentesque. Sed felis eget velit aliquet. Lacus
+            vestibulum sed arcu non. Cursus metus aliquam eleifend mi in. Neque convallis a cras semper auctor neque.
+            Gravida rutrum quisque non tellus orci ac. Aliquam ultrices sagittis orci a scelerisque purus semper eget.
+            Nullam ac tortor vitae purus faucibus ornare suspendisse. Cursus in hac habitasse platea dictumst quisque
+            sagittis purus sit.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            ut labore et dolore magna aliqua. Purus ut faucibus pulvinar elementum integer enim. Et tortor at risus
+            viverra adipiscing at in. Mauris cursus mattis molestie a iaculis at erat pellentesque. Sed felis eget velit
+            aliquet. Lacus vestibulum sed arcu non. Cursus metus </p>
+    </section>
+</main>
+
+{% endblock content %}

@@ -1,0 +1,19 @@
+input[type="checkbox"] {
+  vertical-align: middle;
+}
+
+.field-group-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-group-row {
+  display: flex;
+  align-items: center;
+}
+
+.help,
+.password-tips {
+  font-size: 0.8rem;
+  color: #565252;
+}
