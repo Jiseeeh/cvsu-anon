@@ -103,6 +103,8 @@ a {
 
 .hamburger-btn {
   display: flex;
+  background-color: transparent;
+  border: 0;
 }
 
 .hamburger-btn svg {
@@ -119,6 +121,7 @@ a {
 
 .nav {
   flex-wrap: wrap;
+  padding: 1rem;
 }
 
 .nav__logo {
@@ -180,14 +183,26 @@ a {
     display: flex;
     align-items: center;
     padding: 1rem;
+    flex-wrap: nowrap; /* so that the links go in line with the logo */
+  }
+
+  /* so that the links won't eat too much space */
+  .nav:has(.hamburger-btn input[type="checkbox"]:checked) .nav-links {
+    height: 100%;
   }
 
   .nav-links {
     display: flex;
+    height: 100%;
+    flex-direction: row;
     gap: 1rem;
-    align-items: center;
+    justify-content: flex-end;
     list-style: none;
-    margin-left: auto;
+  }
+
+  /* to reduce the width of 100% on mobile */
+  .nav__link {
+    width: auto;
   }
 
   /* hide hamburger menu */
@@ -196,4 +211,58 @@ a {
     border: none;
     background-color: transparent;
   }
+
+  /* ? login and register */
+  .sections-wrapper {
+    flex-direction: row;
+  }
+
+  .left-section {
+    width: 40%;
+  }
+
+  .right-section {
+    width: 60%;
+  }
+  /* ? login and register */
 }
+
+/* ? login and register */
+.sections-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 1rem;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-error {
+  background-color: #fff2cd;
+  padding: 0.5rem;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.form-input {
+  padding: 0.3rem;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-input:focus,
+.form-input:active,
+.form-input:hover {
+  outline: none;
+  box-shadow: 0 0 0 0.3rem rgba(143, 200, 95, 0.25);
+}
+
+/* ? login and register */
