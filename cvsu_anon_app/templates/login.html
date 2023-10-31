@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock title %}
+
+{% block content %}
+
+<main class="sections-wrapper">
+    <section class="left-section">
+        <h1>Login</h1>
+        {% if error %}
+        <div class="form-error">
+            <ul>
+                <li>{{ error }}</li>
+            </ul>
+        </div>
+        {% endif %}
+        <form action="" method="post" class="form">
+            {% csrf_token %}
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required class="form-input">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required class="form-input">
+            <span>Already have an account? <span><a href="{% url 'register' %}" class="link">Sign Up</a></span></span>
+            <input type="submit" value="Login" class="btn">
+        </form>
+    </section>
+    <section class="right-section">
+        <h1>Rules to Follow</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Purus ut faucibus pulvinar elementum integer enim. Et tortor at risus viverra adipiscing at
+            in. Mauris cursus mattis molestie a iaculis at erat pellentesque. Sed felis eget velit aliquet. Lacus
+            vestibulum sed arcu non. Cursus metus aliquam eleifend mi in. Neque convallis a cras semper auctor neque.
+            Gravida rutrum quisque non tellus orci ac. Aliquam ultrices sagittis orci a scelerisque purus semper eget.
+            Nullam ac tortor vitae purus faucibus ornare suspendisse. Cursus in hac habitasse platea dictumst quisque
+            sagittis purus sit.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            ut labore et dolore magna aliqua. Purus ut faucibus pulvinar elementum integer enim. Et tortor at risus
+            viverra adipiscing at in. Mauris cursus mattis molestie a iaculis at erat pellentesque. Sed felis eget velit
+            aliquet. Lacus vestibulum sed arcu non. Cursus metus </p>
+    </section>
+</main>
+
+{% endblock content %}
