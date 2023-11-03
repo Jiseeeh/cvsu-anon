@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form textarea {
+  resize: vertical;
+}
+
+.rules__description {
+  text-align: justify;
+}
+
+.notice-section {
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.notice-section h1 {
+  text-align: center;
+}
+
+.notice-section img {
+  width: 100%;
+  max-width: 30rem;
+}
+
+/* pc above */
+@media screen and (min-width: 1024px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .send-form {
+    width: 60%;
+  }
+
+  .rules {
+    width: 40%;
+  }
+}
