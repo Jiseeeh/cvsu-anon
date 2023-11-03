@@ -11,7 +11,7 @@ class AnonUser(AbstractUser):
     
 class Message(models.Model):
     id = models.AutoField(primary_key=True)
-    receiver_id = models.ForeignKey(AnonUser,on_delete=models.CASCADE,related_name='receiver_id')
+    receiver_id = models.ForeignKey(AnonUser,on_delete=models.CASCADE,related_name='receiver_id') # NO NEED TO NAME SOMETHING_ID
     message = models.TextField(null=False)
     seen = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
