@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Send{% endblock title %}
+
+{% block styles %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/send_anon.css' %}">
+{% endblock styles %}
+
+{% block content %}
+<main class="wrapper">
+    {% if error %}
+    <section class="notice-section">
+        <h1>{{ error }}</h1>
+        {% load static %}
+        <img src="{% static 'images/error_404.svg' %}" alt="Woman looking at a computer with a 404 text on it.">
+    </section>
+    {% elif success %}
+    <section class="notice-section">
+        <h1>{{ success }}</h1>
+        {% load static %}
+        <img src="{% static 'images/cat-on-kb.png' %}" alt="A cat on a keyboard.">
+    </section>
+    {% else %}
+    <article class="container">
+        <section class="rules">
+            <h2>Rules</h2>
+            <p class="rules__description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus
+                consectetur, reprehenderit, facere,
+                laudantium itaque voluptate facilis debitis velit omnis minus et accusantium dicta! Iusto amet dolores
+                laboriosam illum facere consectetur explicabo mollitia totam voluptates asperiores quam sit neque
+                distinctio repellat dolore fugit repellendus dolorum ducimus, doloremque officiis exercitationem nostrum
+                beatae maxime autem! Assumenda nisi consequatur sequi minus eaque. Delectus ducimus non incidunt aliquid
+                molestiae odit consequatur iusto labore iste dolore asperiores repellat tempora neque, numquam voluptate
+                voluptatum? Omnis doloremque, saepe sapiente fugit odit officiis fuga ipsa commodi totam perferendis,
+                temporibus eaque id corporis eos dolor. Laborum quam architecto qui voluptate.</p>
+        </section>
+        <section class="send-form">
+            <span>Send your message to <strong>{{ username }}</strong></span>
+            <form action="" method="post" class="form">
+                {% csrf_token %}
+                <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                <input class="btn" type="submit" value="Send">
+            </form>
+        </section>
+    </article>
+    {% endif %}
+</main>
+{% endblock content %}
