@@ -61,7 +61,7 @@ def login(request):
         
         if user is not None:
             auth_login(request, user)
-            return redirect('index')
+            return redirect('dashboard')
         else:
             context['error'] = 'Invalid username or password.'
             return render(request, 'login.html',context)
