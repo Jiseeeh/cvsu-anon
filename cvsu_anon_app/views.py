@@ -115,3 +115,14 @@ def send_anon(request,username):
             
         
     return render(request, 'send_anon.html',context)
+
+
+def dashboard(request):
+    
+    if not request.user.is_authenticated:
+        return redirect('index')
+    
+    logged_user = request.user;
+    messages = Message.objects.filter(receiver_id=logged_user)
+        
+    return render(request, 'dashboard.html',{'show_nav':True,'messages':messages, 'user':logged_user})
