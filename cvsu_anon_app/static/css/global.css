@@ -27,6 +27,7 @@
     4. Improve text rendering
   */
 body {
+  background-color: #f4f8fb;
   color: var(--black);
   line-height: 1.5;
   font-family: Inter, sans-serif;
