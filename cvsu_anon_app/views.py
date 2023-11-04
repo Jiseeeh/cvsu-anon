@@ -32,7 +32,7 @@ def register(request):
                 
                 return redirect('login')
             except Exception as e:
-                if str(e) != None and "NOT NULL constraint failed" in str(e):
+                if str(e) != None and "UNIQUE constraint failed" in str(e):
                     form.add_error('username',"You already have an account here. If you believe this is a mistake, please contact the developer.")
     else:
         form = RegisterForm()
