@@ -171,7 +171,7 @@ a {
 }
 
 .nav:has(.hamburger-btn input[type="checkbox"]:checked) .nav-links {
-  height: 100px;
+  height: 120px;
 }
 
 /* hide hamburger icon if navbar is active */
