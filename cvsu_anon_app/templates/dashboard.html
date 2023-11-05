@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock styles %}
+
+{% block content %}
+<main class="wrapper">
+    <article class="content-container">
+        <section class="info">
+            <h1>Share your link</h1>
+            <h2 class="user-link">{{ request.scheme }}://{{ request.META.HTTP_HOST }}/send/u/{{user.username}}</h2>
+            <h3>Messages || Current RP: {{user.ray_points}}</h3>
+        </section>
+        <section class="messages">
+            {% for message_obj in messages %}
+            <section class="message-container">
+                <p class="message-text">{{ message_obj.message }}</p>
+                <div class="expand-icon" onclick="onExpandClick(event)"></div>
+            </section>
+            {% endfor %}
+        </section>
+        </section>
+    </article>
+</main>
+{% load static %}
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock content %}

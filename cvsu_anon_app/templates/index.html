@@ -16,7 +16,11 @@
                 points(RP)'</strong> where
             they
             earn points for each message they receive and send.</p>
+        {% if user.is_authenticated %}
+        <button class="btn"> <a href="{% url 'dashboard' %}">Join CvSU Anon -></a></button>
+        {% else %}
         <button class="btn"> <a href="{% url 'register' %}">Join CvSU Anon -></a></button>
+        {% endif %}
     </section>
     <section class="content__right-section">
         {% load static %}
