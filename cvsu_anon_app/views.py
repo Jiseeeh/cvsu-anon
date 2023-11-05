@@ -105,9 +105,9 @@ def send_anon(request,username):
             User.objects.filter(username=logged_user.username).update(ray_points=logged_user.ray_points + 1)
             
             # create a message
-            Message.objects.create(receiver_id=receiver,message=request.POST.get('message'))
+            Message.objects.create(receiver_id=receiver,message=request.POST.get('message').strip())
         else:
-            Message.objects.create(receiver_id=receiver,message=request.POST.get('message'))
+            Message.objects.create(receiver_id=receiver,message=request.POST.get('message').strip())
             
         context['success'] = f"Message sent to {username}."
         # increment receiver's ray_points by 5
@@ -126,3 +126,9 @@ def dashboard(request):
     messages = Message.objects.filter(receiver_id=logged_user)
         
     return render(request, 'dashboard.html',{'show_nav':True,'messages':messages, 'user':logged_user})
+
+def homepage(request):
+    # get top three users with the most ray_points
+    top_users = get_user_model().objects.order_by('-ray_points')[:3]
+    
+    return render(request, 'homepage.html',{'show_nav':True,'top_users':top_users})
