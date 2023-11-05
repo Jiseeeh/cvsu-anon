@@ -120,7 +120,7 @@ def send_anon(request,username):
 def dashboard(request):
     
     if not request.user.is_authenticated:
-        return redirect('index')
+        return redirect('register')
     
     logged_user = request.user;
     messages = Message.objects.filter(receiver_id=logged_user)
