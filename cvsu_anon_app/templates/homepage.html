@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block styles %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+{% endblock styles %}
+
+{% block content %}
+<main class="wrapper">
+    <article class="users-wrapper">
+        <h1 class="heading">Users with the most RP</h1>
+        <section class="users-container">
+            {% for user in top_users %}
+            <section class="user">
+                {% load static %}
+                <img src="{% static 'images/default-avatar.webp' %}" alt="User default avatar" class="user__img">
+                <h2 class="user__name">{{ user.username }}</h2>
+                <p class="user__link">{{ request.scheme }}://{{ request.META.HTTP_HOST }}/send/u/{{user.username}}</p>
+                <div class="user__rp">{{ user.ray_points }}RP</div>
+            </section>
+            {% endfor %}
+        </section>
+        {% if user.is_authenticated %}
+        <h2 class="heading"><a href="{% url 'dashboard' %}" class="link">Get Anon Messages now -> </a></h2>
+        {% else %}
+        <h2 class="heading"><a href="{% url 'register' %}" class="link">Get Anon Messages now -> </a></h2>
+        {% endif %}
+    </article>
+</main>
+{% endblock content %}
