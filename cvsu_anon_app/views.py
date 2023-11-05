@@ -32,7 +32,7 @@ def register(request):
                 
                 return redirect('login')
             except Exception as e:
-                if str(e) != None and "NOT NULL constraint failed" in str(e):
+                if str(e) != None and "UNIQUE constraint failed" in str(e):
                     form.add_error('username',"You already have an account here. If you believe this is a mistake, please contact the developer.")
     else:
         form = RegisterForm()
@@ -61,7 +61,7 @@ def login(request):
         
         if user is not None:
             auth_login(request, user)
-            return redirect('index')
+            return redirect('dashboard')
         else:
             context['error'] = 'Invalid username or password.'
             return render(request, 'login.html',context)
@@ -115,3 +115,14 @@ def send_anon(request,username):
             
         
     return render(request, 'send_anon.html',context)
+
+
+def dashboard(request):
+    
+    if not request.user.is_authenticated:
+        return redirect('index')
+    
+    logged_user = request.user;
+    messages = Message.objects.filter(receiver_id=logged_user)
+        
+    return render(request, 'dashboard.html',{'show_nav':True,'messages':messages, 'user':logged_user})
