@@ -81,6 +81,7 @@ def send_anon(request,username):
         'username':username,
         'error':'',
         'success':'',
+        'textarea_error': ''
     }
     
     # check if there is a user with the given username to be sent to
@@ -103,6 +104,13 @@ def send_anon(request,username):
         return render(request, 'send_anon.html',context)
     
     if request.method == 'POST':
+        message = request.POST.get('message').strip()
+        
+        # check is message is empty or whitespace only
+        if message == '' or message.isspace():
+            context['textarea_error'] = 'Message cannot be empty.'
+            return render(request, 'send_anon.html',context)
+        
         
         # if authenticated, increment user ray_points by 1, otherwise just create a message
         if request.user.is_authenticated:
