@@ -34,6 +34,10 @@
   max-width: 30rem;
 }
 
+.error {
+  color: var(--error);
+}
+
 /* pc above */
 @media screen and (min-width: 1024px) {
   .container {
