@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth import get_user_model
+from ipware import get_client_ip
 
 from .models import Message
 from .forms import RegisterForm
@@ -23,13 +24,8 @@ def register(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             
-            ip = ""
-            x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-            if x_forwarded_for:
-                ip = x_forwarded_for.split(',')[-1].strip()
-            else:
-                ip = request.META.get('REMOTE_ADDR')
-                
+            ip, _ = get_client_ip(request)
+            
             print("IP: ",ip)
             user = User.objects.create(username=username,client_ip=ip)
             user.set_password(raw_password)
