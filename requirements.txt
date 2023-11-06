@@ -4,4 +4,4 @@ gunicorn==21.2.0
 packaging==23.2
 sqlparse==0.4.4
 tzdata==2023.3
-whitenoise==6.6.0
+whitenoise
