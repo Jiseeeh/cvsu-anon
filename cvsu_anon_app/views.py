@@ -83,17 +83,23 @@ def send_anon(request,username):
         'success':'',
     }
     
-    # check if user is sending to himself/herself
-    if username == logged_user.username:
-        context['error'] = 'You cannot send a message to yourself.'
-        return render(request, 'send_anon.html',context)
-    
     # check if there is a user with the given username to be sent to
-    try:
-        
+    try:    
         receiver = get_user_model().objects.get(username=username)
     except:
         context['error'] = 'User does not exist.'
+        return render(request, 'send_anon.html',context)
+    
+    # check if user created an account and wants to send a message to himself/herself
+    ip, _ = get_client_ip(request)
+    
+    if receiver.client_ip == ip:
+        context['error'] = 'You cannot send a message to yourself.'
+        return render(request, 'send_anon.html',context)
+        
+    # check if user is sending to himself/herself
+    if username == logged_user.username:
+        context['error'] = 'You cannot send a message to yourself.'
         return render(request, 'send_anon.html',context)
     
     if request.method == 'POST':
