@@ -2,7 +2,7 @@ asgiref==3.7.2
 certifi==2023.7.22
 charset-normalizer==3.3.0
 colorama==0.4.6
-Django==4.2.6
+Django
 docopt-ng==0.8.1
 docstring-to-markdown==0.12
 gdtoolkit==4.1.0
@@ -22,3 +22,4 @@ sqlparse==0.4.4
 tzdata==2023.3
 ujson==5.8.0
 urllib3==2.0.6
+gunicorn
