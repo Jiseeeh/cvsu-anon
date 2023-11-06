@@ -23,17 +23,13 @@ def register(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             
-            try:
-                user = User.objects.create(username=username,client_ip=request.META['REMOTE_ADDR'])
-                user.set_password(raw_password)
-                user.save()
-                
-                authenticate(username=username, password=raw_password)
-                
-                return redirect('login')
-            except Exception as e:
-                if str(e) != None and "UNIQUE constraint failed" in str(e):
-                    form.add_error('username',"You already have an account here. If you believe this is a mistake, please contact the developer.")
+            user = User.objects.create(username=username)
+            user.set_password(raw_password)
+            user.save()
+            
+            authenticate(username=username, password=raw_password)
+            
+            return redirect('login')
     else:
         form = RegisterForm()
         
