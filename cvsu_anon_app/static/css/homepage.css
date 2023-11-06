@@ -1,3 +1,13 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  flex-grow: 1;
+}
+
 .users-wrapper {
   padding: 1rem;
 }
@@ -19,7 +29,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  padding: 4rem 3rem;
+  padding: 2rem 1rem;
   width: 100%;
   max-width: 24rem;
   background-color: #fff;
@@ -44,4 +54,33 @@
   padding: 0.5rem 5rem;
   border-radius: 8px;
   font-weight: bold;
+}
+
+.footer {
+  height: 70px;
+  width: 100%;
+  gap: 1rem;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer__img {
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  background: url("../images/github.svg") no-repeat center center / contain;
+  transition: all 0.3s ease-in-out;
+}
+
+.footer__img:hover {
+  background: url("../images/github-filled.svg") no-repeat center center /
+    contain;
+}
+
+@media screen and (min-width: 1024px) {
+  .user {
+    padding: 4rem 3rem;
+  }
 }
