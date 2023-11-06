@@ -23,7 +23,14 @@ def register(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             
-            user = User.objects.create(username=username)
+            ip = ""
+            x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+            if x_forwarded_for:
+                ip = x_forwarded_for.split(',')[-1].strip()
+            else:
+                ip = request.META.get('REMOTE_ADDR')
+                
+            user = User.objects.create(username=username,client_ip=ip)
             user.set_password(raw_password)
             user.save()
             
