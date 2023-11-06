@@ -124,7 +124,7 @@ def dashboard(request):
     return render(request, 'dashboard.html',{'show_nav':True,'messages':messages, 'user':logged_user})
 
 def homepage(request):
-    # get top three users with the most ray_points
-    top_users = get_user_model().objects.order_by('-ray_points')[:3]
+    # get top three users with the most ray_points, excluding 0 ray_points
+    top_users = get_user_model().objects.filter(ray_points__gt=0).order_by('-ray_points')[:3]
     
     return render(request, 'homepage.html',{'show_nav':True,'top_users':top_users})
