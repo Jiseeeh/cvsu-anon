@@ -40,6 +40,9 @@
             <form action="" method="post" class="form">
                 {% csrf_token %}
                 <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                {% if textarea_error %}
+                <span class="error">{{ textarea_error }}</span>
+                {% endif %}
                 <input class="btn" type="submit" value="Send">
             </form>
         </section>
