@@ -30,6 +30,7 @@ def register(request):
             else:
                 ip = request.META.get('REMOTE_ADDR')
                 
+            print("IP: ",ip)
             user = User.objects.create(username=username,client_ip=ip)
             user.set_password(raw_password)
             user.save()
