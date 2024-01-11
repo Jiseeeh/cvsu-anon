@@ -8,5 +8,7 @@ urlpatterns = [
     path("logout/", views.logout, name="logout"),
     path("send/u/<str:username>/", views.send_anon, name="send_anon_message"),
     path("dashboard/", views.dashboard, name="dashboard"),
+    path("dashboard/delete/<int:message_id>/",
+         views.delete_message, name="delete_message"),
     path("homepage/", views.homepage, name="homepage"),
 ]

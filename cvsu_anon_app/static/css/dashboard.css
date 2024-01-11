@@ -31,6 +31,7 @@ body {
   border-radius: 6px;
   padding: 1.5rem;
   position: relative;
+  overflow: hidden;
 }
 
 .expanded-message-container {
@@ -67,6 +68,17 @@ body {
   height: 20px;
   width: 20px;
   background: url("../images/maximize.svg") no-repeat center center;
+}
+
+.trash-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 40px;
+  cursor: pointer;
+  background-color: cyan;
+  height: 20px;
+  width: 20px;
+  background: url("../images/trash.svg") no-repeat center center;
 }
 
 .message-text {

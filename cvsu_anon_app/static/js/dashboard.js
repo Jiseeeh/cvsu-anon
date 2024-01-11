@@ -1,5 +1,6 @@
 const BODY_COLOR = '#f4f8fb';
 const BODY = document.querySelector('body');
+const trashIcon = document.querySelector('.trash-icon');
 
 BODY.addEventListener('click', (e) => {
     if (e.target !== BODY) {
@@ -16,6 +17,7 @@ BODY.addEventListener('click', (e) => {
         }
     }
     BODY.style.backgroundColor = BODY_COLOR;
+    trashIcon.style.display = "block";
 });
 
 function onExpandClick(e) {
@@ -24,15 +26,17 @@ function onExpandClick(e) {
     const messageContainer = e.target.parentElement;
     const message = messageContainer.querySelector('p');
     const expandIcon = messageContainer.querySelector('.expand-icon')
+    trashIcon.style.display = "none";
 
     if (messageContainer.classList.contains('expanded-message-container')) {
         messageContainer.classList.remove('expanded-message-container');
         message.classList.remove('expanded-message-text');
         expandIcon.classList.remove('expanded-expand-icon');
-
+        
         message.classList.add('message-text');
-
+        
         document.querySelector('body').style.backgroundColor = BODY_COLOR;
+        trashIcon.style.display = "block";
         return;
     }
 
