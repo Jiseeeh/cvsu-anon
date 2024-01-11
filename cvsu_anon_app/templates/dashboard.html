@@ -20,6 +20,7 @@
             <section class="message-container">
                 <p class="message-text">{{ message_obj.message }}</p>
                 <div class="expand-icon" onclick="onExpandClick(event)"></div>
+                <a class="trash-icon" href="{% url 'delete_message' message_id=message_obj.id %}"></a>
             </section>
             {% endfor %}
         </section>
