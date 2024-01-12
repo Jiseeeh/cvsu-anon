@@ -8,3 +8,4 @@ whitenoise
 django-ipware
 psycopg2
 python-dotenv
+djangorestframework

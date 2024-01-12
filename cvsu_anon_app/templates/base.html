@@ -45,6 +45,7 @@
             <li class="nav__link"><a href="{% url 'homepage' %}">Home</a></li>
             <li class="nav__link"><a href="{% url 'dashboard' %}">Dashboard</a></li>
             {% if user.is_authenticated %}
+            <li class="nav__link"><a href="{% url 'sent_messages' %}">Sent Messages</a></li>
             <li class="nav__link"><a href="{% url 'logout' %}">Logout</a></li>
             {% else %}
             <li class="nav__link"><a href="{% url 'login' %}">Login</a></li>
