@@ -26,7 +26,9 @@
                 {% load static %}
                 <img src="{% static 'images/default-avatar.webp' %}" alt="User default avatar" class="user__img">
                 <h2 class="user__name">{{ user.username }}</h2>
-                <p class="user__link">{{ request.scheme }}://{{ request.META.HTTP_HOST }}/send/u/{{user.username}}</p>
+                <a class="user__link"
+                    href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/send/u/{{user.username}}"
+                    target="_blank">Click to send me a message</a>
                 <div class="user__rp">{{ user.ray_points }}RP</div>
             </section>
             {% endfor %}
