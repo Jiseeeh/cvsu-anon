@@ -1,7 +1,10 @@
+from http.client import HTTPResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth import get_user_model
 from ipware import get_client_ip
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 from .models import Message
 from .forms import RegisterForm
@@ -123,10 +126,10 @@ def send_anon(request, username):
                 ray_points=logged_user.ray_points + 1)
 
             # create a message
-            Message.objects.create(receiver_id=receiver,
+            Message.objects.create(sender=logged_user, receiver_id=receiver,
                                    message=request.POST.get('message').strip())
         else:
-            Message.objects.create(receiver_id=receiver,
+            Message.objects.create(sender=logged_user, receiver_id=receiver,
                                    message=request.POST.get('message').strip())
 
         context['success'] = f"Message sent to {username}."
@@ -156,6 +159,17 @@ def homepage(request):
     return render(request, 'homepage.html', {'show_nav': True, 'top_users': top_users})
 
 
+def sent_messages(request):
+    if not request.user.is_authenticated:
+        return redirect('register')
+
+    logged_user = request.user
+
+    messages = Message.objects.filter(sender=logged_user.id)
+
+    return render(request, 'sent_messages.html', {'show_nav': True, 'messages': messages})
+
+
 def delete_message(request, message_id):
     if not request.user.is_authenticated:
         return redirect('register')
@@ -173,3 +187,36 @@ def delete_message(request, message_id):
     message.delete()
 
     return redirect('dashboard')
+
+
+@api_view(['GET'])
+def get_messages_sent(request):
+
+    if not request.user.is_authenticated:
+        return redirect('register')
+
+    logged_user = request.user
+
+    return Response({'message': 'hello world get'})
+
+
+@api_view(['PATCH'])
+def patch_message(request, message_id):
+    if not request.user.is_authenticated:
+        return redirect('register')
+
+    logged_user = request.user
+
+    try:
+        message = Message.objects.get(id=message_id)
+    except Message.DoesNotExist:
+        return redirect('dashboard')
+
+    if message.sender != logged_user:
+        return redirect('dashboard')
+
+    # update message
+    message.message = request.data.get('message')
+    message.save()
+
+    return Response({'success': True})
