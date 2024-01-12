@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-x$h1*w0&3i!2c-cx-v!me+axg)p1y(bb$ise&a##%$pmk70vhl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1","cvsu-anon.onrender.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "cvsu-anon.onrender.com"]
 
 
 # Application definition
@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cvsu_anon_app'
+    'cvsu_anon_app',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -82,13 +83,13 @@ WSGI_APPLICATION = 'cvsu_anon.wsgi.application'
 
 DATABASES = {
     'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': os.getenv('DB_NAME'),
-       'USER': os.getenv('DB_USER'),
-       'PASSWORD': os.getenv('DB_PASSWORD'),
-       'HOST': os.getenv('DB_HOST'),
-       'PORT': os.getenv('DB_PORT'),
-   }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
+    }
 }
 
 
