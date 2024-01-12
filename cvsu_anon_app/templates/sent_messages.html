@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Sent Messages {% endblock title %}
+
+{% block styles %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock styles %}
+
+{% block content %}
+<main class="wrapper">
+    {% if messages %}
+    <section class="messages">
+        {% for message_obj in messages %}
+        <section class="message-container">
+            <span class="receiver">To: <strong>{{ message_obj.receiver_id.username }}</strong></span>
+            <textarea class="message-text">{{ message_obj.message }}</textarea>
+            <div class="expand-icon" onclick="onExpandClick(event,true)"></div>
+            <button class="save-icon" onclick="onSaveClick(event)" data-id="{{ message_obj.id }}"></button>
+        </section>
+        {% endfor %}
+    </section>
+    {% else %}
+    <h1 style="text-align: center;">You have no messages sent.</h1>
+    {% endif %}
+</main>
+{% load static %}
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock content %}
