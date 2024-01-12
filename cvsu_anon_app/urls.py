@@ -10,5 +10,9 @@ urlpatterns = [
     path("dashboard/", views.dashboard, name="dashboard"),
     path("dashboard/delete/<int:message_id>/",
          views.delete_message, name="delete_message"),
+    path("dashboard/sent_messages/", views.sent_messages, name="sent_messages"),
     path("homepage/", views.homepage, name="homepage"),
+    path("get_messages_sent/", views.get_messages_sent, name="get_messages_sent"),
+    path("patch_message/<int:message_id>/",
+         views.patch_message, name="patch_message")
 ]
