@@ -40,6 +40,11 @@ body {
 .user__link {
   align-self: normal;
   text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.user__link:hover {
+  color: var(--primary);
 }
 
 .user__img {
