@@ -1,23 +1,26 @@
 const BODY_COLOR = '#f4f8fb';
 const BODY = document.querySelector('body');
-const trashIcon = document.querySelector('.trash-icon');
 
 
 BODY.addEventListener('click', (e) => {
     if (e.target !== BODY) {
         return;
     }
+
+    const trashIcon = document.querySelector('.trash-icon');
     const messages = document.querySelectorAll('.message-container');
 
     for (const message of messages) {
         if (message.classList.contains('expanded-message-container')) {
             const messageText = message.querySelector('textarea') ?? message.querySelector('p');
-            
+            const receiver = message.querySelector('.receiver');
+            const saveIcon = message.querySelector('.save-icon');
+
             message.classList.remove('expanded-message-container');
             messageText.classList.remove('expanded-message-text');
             message.querySelector('.expand-icon').classList.remove('expanded-expand-icon');
-            message.querySelector('.save-icon').classList.remove('expanded-save-icon');
-            message.querySelector('.receiver').classList.remove('expanded-receiver');
+            if (saveIcon) saveIcon.classList.remove('expanded-save-icon');
+            if (receiver) receiver.classList.remove('expanded-receiver');
             messageText.classList.add('message-text');
         }
     }
@@ -29,20 +32,20 @@ function onExpandClick(e,isOnTextArea=false) {
     e.stopPropagation();
 
     const tag = isOnTextArea ? 'textarea' : 'p';
-
     const messageContainer = e.target.parentElement;
+    const trashIcon = messageContainer.querySelector('.trash-icon')
     const message = messageContainer.querySelector(tag);
     const expandIcon = messageContainer.querySelector('.expand-icon');
     const saveIcon = messageContainer.querySelector('.save-icon');
     const receiver = messageContainer.querySelector('.receiver');
-    if(trashIcon) trashIcon.style.display = "none";
+    if (trashIcon) trashIcon.style.display = "none";
 
     if (messageContainer.classList.contains('expanded-message-container')) {
         messageContainer.classList.remove('expanded-message-container');
         message.classList.remove('expanded-message-text');
         expandIcon.classList.remove('expanded-expand-icon');
-        saveIcon.classList.remove('expanded-save-icon');
-        receiver.classList.remove('expanded-receiver');
+        if (saveIcon) saveIcon.classList.remove('expanded-save-icon');
+        if (receiver) receiver.classList.remove('expanded-receiver');
         
         message.classList.add('message-text');
         
@@ -67,8 +70,8 @@ function onExpandClick(e,isOnTextArea=false) {
     message.classList.add('expanded-message-text');
     message.classList.remove('message-text');
     expandIcon.classList.add('expanded-expand-icon');
-    saveIcon.classList.add('expanded-save-icon');
-    receiver.classList.add('expanded-receiver');
+    if (saveIcon) saveIcon.classList.add('expanded-save-icon');
+    if (receiver) receiver.classList.add('expanded-receiver');
 
     // make body bg color gray
     document.querySelector('body').style.backgroundColor = '#ccc';
