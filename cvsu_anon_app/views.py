@@ -125,11 +125,10 @@ def send_anon(request, username):
             User.objects.filter(username=logged_user.username).update(
                 ray_points=logged_user.ray_points + 1)
 
-            # create a message
             Message.objects.create(sender=logged_user, receiver_id=receiver,
                                    message=request.POST.get('message').strip())
         else:
-            Message.objects.create(sender=logged_user, receiver_id=receiver,
+            Message.objects.create(receiver_id=receiver,
                                    message=request.POST.get('message').strip())
 
         context['success'] = f"Message sent to {username}."
